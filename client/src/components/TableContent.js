@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import TableHeader from "./TableHeader";
-import {TableCell, TableRow, withStyles} from "@material-ui/core";
+import {TableBody, TableCell, TableContainer, TableRow, withStyles} from "@material-ui/core";
 
 import axios from "axios";
+import Paper from "@material-ui/core/Paper";
+import Table from "@material-ui/core/table";
 
 
 export default function TableContent()
@@ -16,6 +18,14 @@ export default function TableContent()
             fontSize: 14,
         },
     }))(TableCell);
+
+    const StyledTableRow = withStyles((theme) => ({
+        root: {
+            '&:nth-of-type(odd)': {
+                backgroundColor: theme.palette.action.hover,
+            },
+        },
+    }))(TableRow);
 
 
 
@@ -39,6 +49,10 @@ export default function TableContent()
                 alert("Error retrieving data");
             })
     }
+    useEffect(() => {
+        getCars();
+    }, []);
+
     const sortedRowInformation = (rowArray, comparator) => {
         const stabilizedRowArray = rowArray.map((el,index) => [el,index])
         stabilizedRowArray.sort((a,b) => {
@@ -75,34 +89,37 @@ export default function TableContent()
         setOrderDirection(isAscending ? "desc" : "asc");
 }
 
-console.log(getCars)
+console.log(cars)
 
     return(
         <>
-
+            <TableContainer component={Paper}>
+                <Table aria-label="customized table">
                 <TableHeader
                 valueToOrderBy={valueToOrderBy}
                 orderDirection={orderDirection}
                 handleRequestSort={handleRequestSort}
                 />
             {getCars}
-
-            {
-            sortedRowInformation(cars, getComparator()).map((car,index) => (
-                <TableRow key={index}>
-                    <StyledTableCell>
+                <TableBody>
+                    {
+            sortedRowInformation(cars, getComparator(orderDirection,valueToOrderBy))
+                .map((car,index) => (
+                <StyledTableRow key={index}>
+                    <StyledTableCell component="th" scope="row">
                         {car.name}
                     </StyledTableCell>
-                    <StyledTableCell>
-                        {car.year}
-                    </StyledTableCell>
-                    <StyledTableCell>
-                        {car.model}
-                    </StyledTableCell>
-                </TableRow>
+                    <StyledTableCell align="right">{car.model}</StyledTableCell>
+                    <StyledTableCell
+                        align="right">{car.year}</StyledTableCell>
+                    <StyledTableCell align="right">{car.color}</StyledTableCell>
+                    <StyledTableCell align="right">{car.user_id}</StyledTableCell>
+                </StyledTableRow>
             ))
         }
-
+                </TableBody>
+                </Table>
+            </TableContainer>
         </>
     )
 

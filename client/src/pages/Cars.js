@@ -76,15 +76,7 @@ class Cars extends React.Component {
         return(
             <div>
                 <h1>Car list</h1>
-                <TableContainer component={Paper}>
-                    <Table aria-label="customized table">
                     <TableContent/>
-                        <TableBody>
-                            {this.displayCarsProperty(this.state.cars)}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-
             </div>
 
         )

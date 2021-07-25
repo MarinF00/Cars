@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {TableCell, TableHead, TableRow, TableSortLabel, withStyles} from "@material-ui/core";
 
 export default function TableHeader(props) {
