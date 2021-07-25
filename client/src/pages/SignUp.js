@@ -1,142 +1,78 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Button from "@material-ui/core/Button";
+import "./AddCar.css"
+import Typography from "@material-ui/core/Typography";
 
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
-const useStyles = makeStyles((theme) => ({
-    paper: {
-        marginTop: theme.spacing(8),
+const useStyles = makeStyles(theme => ({
+    root: {
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'center',
         alignItems: 'center',
-    },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(3),
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
+        padding: theme.spacing(2),
+
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: '300px',
+        },
+        '& .MuiButtonBase-root': {
+            margin: theme.spacing(2),
+        },
     },
 }));
-export default function SignUp() {
+
+export default function AddCar() {
     const classes = useStyles();
 
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Sign up
-                </Typography>
-                <form action="http://localhost:8080/users" method="POST" className={classes.form} noValidate>
-                    <Grid container spacing={2}>
-
-                        <TextField name="id"
-                                   id="id"
-                                   variant="outlined"
-                                   autoComplete="id"
-                                   hidden="true"/>
-
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                autoComplete="fname"
-                                name="first_name"
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="username"
-                                label="First Name"
-                                autoFocus
-                            />
-
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="last_name"
-                                label="Last Name"
-                                name="last_name"
-                                autoComplete="lname"
-                            />
-
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                            />
-                        </Grid>
-                    </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="secondary"
-                        className={classes.submit}
-                    >
+        <div>
+            <form action="http://localhost:8080/users" method="POST" className={classes.root}>
+                <Typography variant="h4">Sign Up Form</Typography>
+                <TextField
+                    name="id"
+                    type="hidden"
+                />
+                <TextField
+                    label="First Name"
+                    variant="outlined"
+                    required
+                    name="first_name"
+                />
+                <TextField
+                    label="Last Name"
+                    variant="outlined"
+                    type="text"
+                    required
+                    name="last_name"
+                />
+                <TextField
+                    label="Email"
+                    variant="outlined"
+                    type="email"
+                    required
+                    name="email"
+                />
+                <TextField
+                    label="Password"
+                    variant="outlined"
+                    type="password"
+                    required
+                    name="password"
+                />
+                <div>
+                    <Button type="submit" variant="contained" color="primary">
                         Sign Up
                     </Button>
-                    <Grid container justifyContent="flex-end">
-                        <Grid item>
-                            <Link href="#" variant="body2">
-                                Already have an account? Sign in
-                            </Link>
-                        </Grid>
-                    </Grid>
-                </form>
-            </div>
-            <Box mt={5}>
-                <Copyright />
-            </Box>
-        </Container>
+                </div>
+            </form>
+        </div>
     );
 }

@@ -7,6 +7,8 @@ import Home from "./pages/Home";
 import AddCar from "./pages/AddCar";
 import StickyFooter from "./components/Footer";
 import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
+import "./App.css"
 
 
 class App extends React.Component {
@@ -22,6 +24,7 @@ render() {
                     <Route path="/cars/add"  component={AddCar}/>
                     <Route path="/cars/:id"  component={CarDetails}/>
                     <Route path="/signup"  component={SignUp}/>
+                    <Route path="/login"  component={Login}/>
                 </Switch>
             </Router>
             <StickyFooter/>
