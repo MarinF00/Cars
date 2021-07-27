@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import TableHeader from "./TableHeader";
-import {TableBody, TableCell, TableContainer, TableRow, withStyles} from "@material-ui/core";
+import {TableBody, TableCell, TableContainer, TablePagination, TableRow, withStyles} from "@material-ui/core";
 
 import axios from "axios";
 import Paper from "@material-ui/core/Paper";
@@ -35,7 +35,7 @@ export default function TableContent()
     const [orderDirection, setOrderDirection] = useState("asc");
     const [valueToOrderBy, setvalueToOrderBy] = useState("name");
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setrowsPerPage] = useState(3);
+    const [rowsPerPage, setRowsPerPage] = useState(2);
 
     const getCars = () =>
     {
@@ -89,8 +89,14 @@ export default function TableContent()
         setOrderDirection(isAscending ? "desc" : "asc");
 }
 
-console.log(cars)
-
+const handleChangePage  = (event,newPage) => {
+        setPage(newPage);
+}
+const handleChangeRowsPerPage = (event) =>
+{
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+}
     return(
         <>
             <TableContainer component={Paper}>
@@ -104,6 +110,7 @@ console.log(cars)
                 <TableBody>
                     {
             sortedRowInformation(cars, getComparator(orderDirection,valueToOrderBy))
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((car,index) => (
                 <StyledTableRow key={index}>
                     <StyledTableCell component="th" scope="row">
@@ -120,6 +127,13 @@ console.log(cars)
                 </TableBody>
                 </Table>
             </TableContainer>
+            <TablePagination count={cars.length}
+                             page={page}
+                             onPageChange={handleChangePage}
+                             onRowsPerPageChange={handleChangeRowsPerPage}
+                             rowsPerPageOptions={[2, 4, 10]}
+                             rowsPerPage={rowsPerPage}
+                             component="div"/>
         </>
     )
 

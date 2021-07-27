@@ -31,10 +31,9 @@ class Login extends React.Component{
             >
                 {formik => {
                     return (
-                        <Form>
+                        <Form action="http://localhost:8080/login" method="POST">
                             <FormikControl
                                 control='input'
-                                // control='chakraInput'
                                 type='email'
                                 label='Email'
                                 name='email'

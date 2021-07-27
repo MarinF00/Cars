@@ -131,9 +131,33 @@ app.post("/users", (req,res)=> {
         if (!err)
             rows.forEach(element => {
                 if(element.constructor === Array)
-                    res.redirect("http://localhost:8080/users")
+                    res.redirect("http://localhost:3000/")
             });
         else
             console.log(err);
+    })
+})
+app.post("/login", (req,res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+
+    mySqlConnection.query("SELECT * FROM users WHERE email = ? AND password = ?",
+        [email, password],
+        (err,result) => {
+        if(err)
+        {
+            res.send({err:err}) ;
+        }
+
+            if(result)
+            {
+                res.redirect("http://localhost:3000/");
+
+            }
+            else
+            {
+                console.log("\"Wrong email/password combination\"")
+            }
     })
 })
