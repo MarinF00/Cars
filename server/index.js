@@ -2,7 +2,16 @@ const mysql = require("mysql");
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const url = require('url');
 const cors = require("cors");
+const user = [{
+    id: "",
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: ""
+}
+]
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended: false}))
@@ -72,9 +81,9 @@ app.delete("/cars/:id", (req,res)=> {
 app.post("/cars", (req,res)=> {
     let emp = req.body;
 
-    let sql = "SET @id = ?; SET @name = ?; SET @model = ?; SET @year = ?; SET @color = ?; SET @user_id = ?; CALL CarsAddOrEdit(@id,@name,@model,@year,@color,@user_id)";
+    let sql = "SET @id = ?; SET @name = ?; SET @model = ?; SET @year = ?; SET @color = ?; SET @description = ?; SET @photo = ?; SET @user_id = ?; CALL CarsAddOrEdit(@id,@name,@model,@year,@color,@description,@photo,@user_id)";
 
-    mySqlConnection.query(sql,[emp.id, emp.name, emp.model, emp.year, emp.color, emp.user_id], (err,rows, fields) => {
+    mySqlConnection.query(sql,[emp.id, emp.name, emp.model, emp.year, emp.color,emp.description,emp.photo, emp.user_id], (err,rows, fields) => {
         if (!err)
             rows.forEach(element => {
                 if(element.constructor === Array)
@@ -152,7 +161,12 @@ app.post("/login", (req,res) => {
 
             if(result)
             {
-                res.redirect("http://localhost:3000/");
+
+                this.user = result;
+                res.redirect(url.format({
+                    pathname:"http://localhost:3000/",
+                    query:this.user,
+                }));
 
             }
             else

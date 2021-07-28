@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import "./Cars.css"
 import {TableBody, TableCell, TableContainer, TableRow, withStyles} from "@material-ui/core";
 import TableContent from "../components/TableContent";
+import Link from "@material-ui/core/Link";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -60,14 +61,17 @@ class Cars extends React.Component {
 
         return  cars.map((car) => (
             <StyledTableRow key={car.id}>
+
                 <StyledTableCell component="th" scope="row">
-                    {car.name}
+
+
                 </StyledTableCell>
                 <StyledTableCell align="right">{car.model}</StyledTableCell>
                 <StyledTableCell
                     align="right">{car.year}</StyledTableCell>
                 <StyledTableCell align="right">{car.color}</StyledTableCell>
                 <StyledTableCell align="right">{car.user_id}</StyledTableCell>
+                <StyledTableCell align="right">{car.photo}</StyledTableCell>
             </StyledTableRow>
         ))
     }
@@ -75,7 +79,7 @@ class Cars extends React.Component {
     render() {
         return(
             <div>
-                <h1>Car list</h1>
+                <h1>Special Car Offers</h1>
                     <TableContent/>
             </div>
 

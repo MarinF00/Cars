@@ -44,7 +44,9 @@ export default function TableHeader(props) {
                     </TableSortLabel>
                 </StyledTableCell>
                 <StyledTableCell align="right">Color</StyledTableCell>
+                <StyledTableCell align="right">Description</StyledTableCell>
                 <StyledTableCell align="right">Owner ID</StyledTableCell>
+                <StyledTableCell align="center">Photo</StyledTableCell>
             </TableRow>
         </TableHead>
     )

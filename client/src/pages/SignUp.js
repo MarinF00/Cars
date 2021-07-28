@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
-import "./AddCar.css"
 import * as Yup from "yup";
 import {useFormik} from "formik";
 import Typography from "@material-ui/core/Typography";
@@ -42,7 +41,7 @@ const validationSchema = Yup.object({
         .required('Password is required'),
 });
 
-export default function AddCar() {
+const SignUp = () => {
     const classes = useStyles();
 
         const formik = useFormik({
@@ -50,7 +49,7 @@ export default function AddCar() {
                 first_name: 'Joe',
                 last_name: 'Johnson',
                 email: 'j.johnson@example.com',
-                password: 'joe',
+                password: 'Marin123',
             },
             validationSchema: validationSchema,
             onSubmit: (values) => {
@@ -60,8 +59,8 @@ export default function AddCar() {
 
         return (
             <div>
-                <form action="http://localhost:8080/users" method="POST" className={classes.root}>
-                    <Typography>Sign Up form</Typography>
+                <form action="http://localhost:8080/users" method="POST"  className={classes.root}>
+                    <Typography variant={"h2"} color={"primary"}>Sign Up form</Typography>
                     <TextField
                         fullWidth
                         id="id"
@@ -109,7 +108,7 @@ export default function AddCar() {
                         error={formik.touched.password && Boolean(formik.errors.password)}
                         helperText={formik.touched.password && formik.errors.password}
                     />
-                    <Button color="primary" variant="contained" fullWidth type="submit">
+                    <Button color="primary" variant="contained"  type="submit">
                         Sign Up
                     </Button>
                 </form>
@@ -118,3 +117,4 @@ export default function AddCar() {
 
 
 }
+export default SignUp;

@@ -5,6 +5,7 @@ import {TableBody, TableCell, TableContainer, TablePagination, TableRow, withSty
 import axios from "axios";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/table";
+import Link from "@material-ui/core/Link";
 
 
 export default function TableContent()
@@ -114,13 +115,17 @@ const handleChangeRowsPerPage = (event) =>
                 .map((car,index) => (
                 <StyledTableRow key={index}>
                     <StyledTableCell component="th" scope="row">
-                        {car.name}
+                        <Link to="/cars/:id">
+                            <li>{car.name}</li>
+                        </Link>
                     </StyledTableCell>
                     <StyledTableCell align="right">{car.model}</StyledTableCell>
                     <StyledTableCell
                         align="right">{car.year}</StyledTableCell>
                     <StyledTableCell align="right">{car.color}</StyledTableCell>
+                    <StyledTableCell align="right">{car.description}</StyledTableCell>
                     <StyledTableCell align="right">{car.user_id}</StyledTableCell>
+                    <StyledTableCell align="center"><img src={car.photo} alt="Car photo"/></StyledTableCell>
                 </StyledTableRow>
             ))
         }

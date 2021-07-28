@@ -38,7 +38,7 @@ function  Navbar() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
-                        Cars BG
+                        Special Car
                     </Typography>
             <Menu
                 id="simple-menu"
@@ -49,6 +49,7 @@ function  Navbar() {
             >
                 <MenuItem component={Link} to="/" onClick={handleClose}>Home</MenuItem>
                 <MenuItem component={Link} to="/cars" onClick={handleClose}>Cars</MenuItem>
+                <MenuItem component={Link} to="/cars/add" onClick={handleClose}>Add a Car</MenuItem>
                 <MenuItem component={Link} to="/cars/:id" onClick={handleClose}>Car Details</MenuItem>
                 <MenuItem component={Link} to="/signup" onClick={handleClose}>Sign Up</MenuItem>
                 <MenuItem component={Link} to="/login" onClick={handleClose}>Login</MenuItem>
