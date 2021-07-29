@@ -71,7 +71,6 @@ export default function AddCar() {
     return (
         <div>
             <form action="http://localhost:8080/cars" method="POST" className={classes.root}>
-                <h3>Add a car</h3>
                 <Typography variant={"h3"}>Add a car</Typography>
                 <TextField
                     fullWidth

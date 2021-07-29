@@ -28,7 +28,15 @@ export default function TableContent()
         },
     }))(TableRow);
 
-
+    const StyledTableCellPhoto = withStyles((theme) => ({
+        head: {
+            backgroundColor: theme.palette.common.white,
+            color: theme.palette.common.black,
+        },
+        body: {
+            fontSize: 3,
+        },
+    }))(TableCell);
 
 
 
@@ -114,7 +122,7 @@ const handleChangeRowsPerPage = (event) =>
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((car,index) => (
                 <StyledTableRow key={index}>
-                    <StyledTableCell component="th" scope="row">
+                    <StyledTableCell component="a" href={`http://localhost:3000/cars/${car.id}`} >
                         <Link to="/cars/:id">
                             <li>{car.name}</li>
                         </Link>
@@ -125,7 +133,7 @@ const handleChangeRowsPerPage = (event) =>
                     <StyledTableCell align="right">{car.color}</StyledTableCell>
                     <StyledTableCell align="right">{car.description}</StyledTableCell>
                     <StyledTableCell align="right">{car.user_id}</StyledTableCell>
-                    <StyledTableCell align="center"><img src={car.photo} alt="Car photo"/></StyledTableCell>
+                    <StyledTableCellPhoto align="center"><img width="300px"  src={car.photo} alt="Car photo"/></StyledTableCellPhoto>
                 </StyledTableRow>
             ))
         }

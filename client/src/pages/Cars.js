@@ -16,6 +16,16 @@ const StyledTableCell = withStyles((theme) => ({
         fontSize: 14,
     },
 }))(TableCell);
+const StyledTableCellPhoto = withStyles((theme) => ({
+    head: {
+        backgroundColor: theme.palette.common.white,
+        color: theme.palette.common.black,
+    },
+    body: {
+        width: "100px",
+        height: "100px",
+    },
+}))(TableCell);
 
 
 const StyledTableRow = withStyles((theme) => ({
@@ -71,7 +81,7 @@ class Cars extends React.Component {
                     align="right">{car.year}</StyledTableCell>
                 <StyledTableCell align="right">{car.color}</StyledTableCell>
                 <StyledTableCell align="right">{car.user_id}</StyledTableCell>
-                <StyledTableCell align="right">{car.photo}</StyledTableCell>
+                <TableCell size="small" align="right">{car.photo} </TableCell>
             </StyledTableRow>
         ))
     }

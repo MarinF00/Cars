@@ -80,7 +80,7 @@ const [expanded, setExpanded] = React.useState(false);
         };
 
 
-        return  cars.filter(car => car.id >= 5).map((car) => (
+        return  cars.filter(car => car.id >= cars.length - 5).map((car) => (
             <div className="cars">
                 <Grid item  xs={12} sm={2} md={12} key={cars.indexOf(car)}>
             <Card className={classes.root}>
@@ -140,7 +140,7 @@ const [expanded, setExpanded] = React.useState(false);
 
         return(
             <div>
-                <Typography variant={"h2"}>Our top offers</Typography>
+                <Typography variant={"h2"}>Our newest offers</Typography>
                 <br/>
                 <br/>
                 <Grid
