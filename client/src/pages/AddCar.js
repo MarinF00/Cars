@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import * as Yup from "yup";
 import {useFormik} from "formik";
 import {TextareaAutosize} from "@material-ui/core";
+import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -25,42 +26,43 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const validationSchema = Yup.object({
-    name: Yup
-        .string("Enter the car's brand")
-        .required('Brand is required'),
-    model: Yup
-        .string("Enter the car's model")
-        .required('Model is required'),
-    year: Yup
-        .number("Enter the car's year")
-        .required('Year is required'),
-    color: Yup
-        .string("Enter the car's color")
-        .required('Color is required'),
-    description: Yup
-        .string("Enter the car's description")
-        .required('Description is required'),
-    photo: Yup
-        .string("Enter the car's photo URL")
-        .required('Photo URL is required'),
-    user_id: Yup
-        .number("Enter the car's owner id")
-        .required('Owner ID is required'),
-});
 
 export default function AddCar() {
     const classes = useStyles();
+    const { t } = useTranslation();
+    const validationSchema = Yup.object({
+        name: Yup
+            .string("Enter the car's brand")
+            .required('Brand is required'),
+        model: Yup
+            .string("Enter the car's model")
+            .required('Model is required'),
+        year: Yup
+            .number("Enter the car's year")
+            .required('Year is required'),
+        color: Yup
+            .string("Enter the car's color")
+            .required('Color is required'),
+        description: Yup
+            .string("Enter the car's description")
+            .required('Description is required'),
+        photo: Yup
+            .string("Enter the car's photo URL")
+            .required('Photo URL is required'),
+        user_id: Yup
+            .number("Enter the car's owner id")
+            .required('Owner ID is required'),
+    });
 
     const formik = useFormik({
         initialValues: {
-            name: 'Toyota',
-            model: 'Yaris',
-            year: 2000,
-            color: 'Red',
-            description: "Car' description",
-            photo: "Link to car's photo",
-            user_id: 0,
+            name: '',
+            model: '',
+            year: "",
+            color: '',
+            description: "",
+            photo: "",
+            user_id: "",
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -71,7 +73,7 @@ export default function AddCar() {
     return (
         <div>
             <form action="http://localhost:8080/cars" method="POST" className={classes.root}>
-                <Typography variant={"h3"}>Add a car</Typography>
+                <Typography variant={"h3"}>{t("AddCar.1")}</Typography>
                 <TextField
                     fullWidth
                     id="id"
@@ -82,7 +84,7 @@ export default function AddCar() {
                     fullWidth
                     id="name"
                     name="name"
-                    label="Brand"
+                    label={t("Car.1")}
                     value={formik.values.name}
                     onChange={formik.handleChange}
                     error={formik.touched.name && Boolean(formik.errors.name)}
@@ -93,7 +95,7 @@ export default function AddCar() {
                     fullWidth
                     id="model"
                     name="model"
-                    label="Model"
+                    label={t("Model.1")}
                     value={formik.values.model}
                     onChange={formik.handleChange}
                     error={formik.touched.model && Boolean(formik.errors.model)}
@@ -103,7 +105,7 @@ export default function AddCar() {
                     fullWidth
                     id="year"
                     name="year"
-                    label="Year"
+                    label={t("Year.1")}
                     value={formik.values.year}
                     onChange={formik.handleChange}
                     error={formik.touched.year && Boolean(formik.errors.year)}
@@ -113,7 +115,7 @@ export default function AddCar() {
                     fullWidth
                     id="color"
                     name="color"
-                    label="Color"
+                    label={t("Color.1")}
                     value={formik.values.color}
                     onChange={formik.handleChange}
                     error={formik.touched.color && Boolean(formik.errors.color)}
@@ -124,7 +126,7 @@ export default function AddCar() {
                     fullWidth
                     id="photo"
                     name="photo"
-                    label="Photo"
+                    label={t("Photo.1")}
                     value={formik.values.photo}
                     onChange={formik.handleChange}
                     error={formik.touched.photo && Boolean(formik.errors.photo)}
@@ -134,7 +136,7 @@ export default function AddCar() {
                     fullWidth
                     id="user_id"
                     name="user_id"
-                    label="Owner ID"
+                    label={t("Owner.1")}
                     value={formik.values.user_id}
                     onChange={formik.handleChange}
                     error={formik.touched.user_id && Boolean(formik.errors.user_id)}
@@ -144,14 +146,14 @@ export default function AddCar() {
                                   style={{width: "300px", height: "130px"}}
                                   id="description"
                                   name="description"
-                                  label="Description"
+                                  label={t("Description.1")}
                                   value={formik.values.description}
                                   onChange={formik.handleChange}
                                   error={formik.touched.description && Boolean(formik.errors.description)}
                                   helperText={formik.touched.description && formik.errors.description}
                 />
                 <Button color="primary" variant="contained" type="submit">
-                    Add car
+                    {t("AddCar.1")}
                 </Button>
             </form>
         </div>

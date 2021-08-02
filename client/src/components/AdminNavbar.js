@@ -58,25 +58,27 @@ function  Navbar() {
                     <Typography variant="h6" className={classes.title}>
                         Special Car
                     </Typography>
-            <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-            >
-                <MenuItem component={Link} to="/" onClick={handleClose}>Начало</MenuItem>
-                <MenuItem component={Link} to="/cars" onClick={handleClose}>Обяви</MenuItem>
-                <MenuItem component={Link} to="/contacts" onClick={handleClose}>Контакти</MenuItem>
-                <MenuItem component={Link} to="/login" onClick={handleClose}>Вход</MenuItem>
-            </Menu>
+                    <Menu
+                        id="simple-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                    >
+                        <MenuItem component={Link} to="/" onClick={handleClose}>{t("Home.1")}</MenuItem>
+                        <MenuItem component={Link} to="/cars" onClick={handleClose}>{t("Offers.1")}</MenuItem>
+                        <MenuItem component={Link} to="/cars/add" onClick={handleClose}>{t("AddCar.1")}</MenuItem>
+                        <MenuItem component={Link} to="/contacts" onClick={handleClose}>{t("Contacts.1")}</MenuItem>
+                        <MenuItem component={Link} to="/login" onClick={handleClose}>{t("Login.1")}</MenuItem>
+                        <MenuItem component={Link} to="/signup" onClick={handleClose}>{t("SignUp.1")}</MenuItem>
+                    </Menu>
                     <Typography variant="h6" >
-                        Languages
+                        {t("Languages.1")}
                     </Typography>
 
 
-                        <Button  style={{ minWidth: "0px" }} onClick={()=>handleLangClick('en')}><img width="26px" height="16px" src={us} alt="US"/> </Button>
-                        <Button  style={{ minWidth: "0px" }} onClick={()=>handleLangClick('bg')}><img width="26px" height="16px" src={bg} alt="Bulgarian"/> </Button>
+                    <Button  style={{ minWidth: "0px" }} onClick={()=>handleLangClick('en')}><img width="26px" height="16px" src={us} alt="US"/> </Button>
+                    <Button  style={{ minWidth: "0px" }} onClick={()=>handleLangClick('bg')}><img width="26px" height="16px" src={bg} alt="Bulgarian"/> </Button>
 
                 </Toolbar>
             </AppBar>

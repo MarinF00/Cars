@@ -1,0 +1,68 @@
+{
+  "Thanks": {
+    "1": "Thank you"
+  },
+  "Why": {
+    "1": "For watching this video"
+  },
+  "Car": {
+    "1": "Brand"
+  },
+  "Model": {
+    "1": "Model"
+  },
+  "Description": {
+    "1": "Description"
+  },
+  "Year": {
+    "1": "Year"
+  },
+  "Owner": {
+    "1": "Owner ID"
+  },
+  "Color": {
+    "1": "Color"
+  },
+  "Photo": {
+    "1": "Photo"
+  },
+  "OurNewestOffers": {
+    "1": "Our newest offers"
+  },
+  "Login": {
+    "1": "Login"
+  },
+  "SignUp": {
+    "1": "Sign Up"
+  },
+  "AddCar": {
+    "1": "Add a Car"
+  },
+  "Home": {
+    "1": "Home"
+  },
+  "Contacts": {
+    "1": "Contacts"
+  },
+  "Offers": {
+    "1": "Car Offers"
+  },
+  "Languages": {
+    "1": "Languages"
+  },
+  "FirstName": {
+    "1": "First Name"
+  },
+  "LastName": {
+    "1": "Last Name"
+  },
+  "Email": {
+    "1": "Email"
+  },
+  "Password": {
+    "1": "Password"
+  },
+  "Registration": {
+    "1": "Registration"
+  }
+}

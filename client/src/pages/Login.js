@@ -1,12 +1,11 @@
 import React from "react";
 import * as Yup from "yup";
-import {Formik, Form, useFormik} from "formik";
-import FormikControl from "../components/FormikControl";
+import {useFormik} from "formik";
 import "./Login.css"
 import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -26,24 +25,26 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const validationSchema = Yup.object({
-    email: Yup
-        .string('Enter your email')
-        .email('Enter a valid email')
-        .required('Email is required'),
-    password: Yup
-        .string('Enter your password')
-        .min(8, 'Password should be of minimum 4 characters length')
-        .required('Password is required'),
-});
+
 
 
 export default function Login() {
     const classes = useStyles();
+    const { t } = useTranslation();
+    const validationSchema = Yup.object({
+        email: Yup
+            .string('Enter your email')
+            .email('Enter a valid email')
+            .required('Email is required'),
+        password: Yup
+            .string('Enter your password')
+            .min(8, 'Password should be of minimum 4 characters length')
+            .required('Password is required'),
+    });
      const formik = useFormik({
         initialValues: {
-            email: 'j.johnson@example.com',
-            password: 'Marin123',
+            email: '',
+            password: '',
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -60,7 +61,7 @@ export default function Login() {
                         fullWidth
                         id="email"
                         name="email"
-                        label="Email"
+                        label={t("Email.1")}
                         value={formik.values.email}
                         onChange={formik.handleChange}
                         error={formik.touched.email && Boolean(formik.errors.email)}
@@ -70,7 +71,7 @@ export default function Login() {
                         fullWidth
                         id="password"
                         name="password"
-                        label="Password"
+                        label={t("Password.1")}
                         type="password"
                         value={formik.values.password}
                         onChange={formik.handleChange}
@@ -78,7 +79,7 @@ export default function Login() {
                         helperText={formik.touched.password && formik.errors.password}
                     />
                     <Button color="primary" variant="contained"  type="submit">
-                        Login
+                        {t("Login.1")}
                     </Button>
                 </form>
             </div>

@@ -19,6 +19,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import clsx from 'clsx';
+import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Home() {
+const { t } = useTranslation();
 const [cars, setCars] = useState([]);
 const classes = useStyles();
 const [expanded, setExpanded] = React.useState(false);
@@ -140,7 +142,7 @@ const [expanded, setExpanded] = React.useState(false);
 
         return(
             <div>
-                <Typography variant={"h2"}>Our newest offers</Typography>
+                <Typography variant={"h2"}>{t("OurNewestOffers.1")}</Typography>
                 <br/>
                 <br/>
                 <Grid

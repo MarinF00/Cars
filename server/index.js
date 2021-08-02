@@ -163,10 +163,7 @@ app.post("/login", (req,res) => {
             {
 
                 this.user = result;
-                res.redirect(url.format({
-                    pathname:"http://localhost:3000/",
-                    query:this.user,
-                }));
+                res.redirect("http://localhost:3000/")
 
             }
             else
@@ -174,4 +171,15 @@ app.post("/login", (req,res) => {
                 console.log("\"Wrong email/password combination\"")
             }
     })
+})
+app.get("/user", (req,res)=> {
+    res.send(this.user);
+})
+app.get("/logout", (req,res)=> {
+        this.user.id = "";
+        this.user.first_name = "";
+        this.user.last_name = "";
+        this.user.email = "";
+        this.user.password = "";
+        res.redirect("http://localhost:3000/")
 })
