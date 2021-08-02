@@ -3,3 +3,53 @@
     grid-template-rows: repeat(auto-fill, minmax(250px,1fr));
     gap: 1rem;
 }
+
+
+
+
+img
+{
+    max-width: 100%;
+}
+
+.image-right
+{
+    margin: 1em 0;
+}
+
+@media (min-width: 20em)
+{
+    .image-right
+    {
+        display: flex;
+        align-items: center;
+        margin: 80px;
+        background-color: aqua;
+        color:#D2042D;
+    }
+
+
+
+    .image-right img
+    {
+        order: 1;
+        margin-left: 1em;
+        float: right; /* fallback */
+    }
+
+    /* clearfix for fallback */
+    .image-right::after
+    {
+        content: "";
+        display: block;
+        clear: both;
+    }
+}
+
+@media (min-width: 30em)
+{
+    .image-left img, .image-right img
+    {
+        flex-shrink: 0;
+    }
+}

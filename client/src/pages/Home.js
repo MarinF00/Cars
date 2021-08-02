@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
+import "./Home.css"
 import {
     Avatar,
     Card,
@@ -20,10 +21,12 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import clsx from 'clsx';
 import {useTranslation} from "react-i18next";
+import Contacts from "./Contacts";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 345,
+        maxWidth: 300,
+        margin: "30px",
     },
     media: {
         height: 0,
@@ -84,7 +87,7 @@ const [expanded, setExpanded] = React.useState(false);
 
         return  cars.filter(car => car.id >= cars.length - 5).map((car) => (
             <div className="cars">
-                <Grid item  xs={12} sm={2} md={12} key={cars.indexOf(car)}>
+                <Grid item  xs={8} sm={2} md={12} key={cars.indexOf(car)}>
             <Card className={classes.root}>
                 <CardHeader
                     avatar={
@@ -155,6 +158,18 @@ const [expanded, setExpanded] = React.useState(false);
                 {displayCarsProperty(cars)}
 
                 </Grid>
+
+                <div className="image-right">
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/HumanRightsLogo.svg/230px-HumanRightsLogo.svg.png"
+                        alt="Human Rights Logo"/>
+                    <div>
+                        <Typography>{t("About.1")}</Typography>
+                        <Typography>
+                            <Contacts/>
+                        </Typography>
+                    </div>
+                </div>
             </div>
         )
     }

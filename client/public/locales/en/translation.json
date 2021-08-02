@@ -64,5 +64,14 @@
   },
   "Registration": {
     "1": "Registration"
+  },
+  "About": {
+    "1": "We are Bulgarian company which business is buying and reselling cars. Our location is Varna, Bulgaria. We are working in this business for more than 20 years."
+  },
+  "ContactUs": {
+    "1": "You can contact us on:"
+  },
+  "Phone": {
+    "1": "Phone"
   }
 }

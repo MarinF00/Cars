@@ -1,53 +1,55 @@
 import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import VpnKeyRoundedIcon from '@material-ui/icons/VpnKeyRounded';
+import LocalCarWashRoundedIcon from '@material-ui/icons/LocalCarWashRounded';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom"
+import "./Footer.css"
 
 
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary">
-            {'Copyright © '}
-            <Link color="inherit" href="/">
-                    Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
     root: {
-        display: 'flex',
-        flexDirection: 'column',
-        minHeight: '100vh',
+        position:"center",
+        width: "100%",
+        backgroundColor: "#3f51b5",
+        color: "white",
     },
-    main: {
-        marginTop: theme.spacing(8),
-        marginBottom: theme.spacing(2),
-    },
-    footer: {
-        padding: theme.spacing(3, 2),
-        marginTop: 'auto',
-        backgroundColor:
-            theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
-    },
-}));
 
-export default function StickyFooter() {
+});
+export default function Footer() {
     const classes = useStyles();
-
+    const { t } = useTranslation();
+    const [value, setValue] = React.useState(0);
     return (
-        <div className={classes.root}>
-            <CssBaseline />
-            <footer className={classes.footer}>
-                <Container maxWidth="sm">
-                    <Copyright />
-                </Container>
-            </footer>
+        <div className="footer">
+        <BottomNavigation
+            value={value}
+            onChange={(event, newValue) => {
+                setValue(newValue);
+            }}
+
+            showLabels
+            className={classes.root}
+        >
+            <div className="icons">
+            <BottomNavigationAction
+                label={t("Home.1")}
+                icon={<HomeRoundedIcon />}
+                className="icons"
+                >
+
+                <Link to="/">
+                    <li>!</li>
+                </Link>
+
+            </BottomNavigationAction>
+            <BottomNavigationAction label={t("Offers.1")} icon={<LocalCarWashRoundedIcon />} className="icons"/>
+            <BottomNavigationAction label={t("Login.1")} icon={<VpnKeyRoundedIcon />} className="icons" />
+            </div>
+        </BottomNavigation>
         </div>
     );
 }
