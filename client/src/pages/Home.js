@@ -12,7 +12,7 @@ import {
     CardMedia,
     Collapse, Grid,
     IconButton,
-    makeStyles
+    makeStyles, Paper, Tab, Tabs
 } from "@material-ui/core";
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 300,
         margin: "30px",
+
     },
     media: {
         height: 0,
@@ -59,7 +60,7 @@ const [expanded, setExpanded] = React.useState(false);
 
     useEffect(() => {
         getCars();
-    }, []);
+    },[]);
 
 
     const getCars = () =>
@@ -85,7 +86,7 @@ const [expanded, setExpanded] = React.useState(false);
         };
 
 
-        return  cars.filter(car => car.id >= cars.length - 5).map((car) => (
+        return  cars.filter(car => car.id >= cars.length - 4).map((car) => (
             <div className="cars">
                 <Grid item  xs={8} sm={2} md={12} key={cars.indexOf(car)}>
             <Card className={classes.root}>
@@ -100,7 +101,12 @@ const [expanded, setExpanded] = React.useState(false);
                             <MoreVertIcon />
                         </IconButton>
                     }
-                    title={car.name}
+                    title={
+                        <Link to={`/cars/${car.id}`}>
+                        <li style={{textDecoration: "none"}}>{car.name}</li>
+                        </Link>
+                    }
+
                     subheader={car.year}
                 />
                 <CardMedia
@@ -144,8 +150,10 @@ const [expanded, setExpanded] = React.useState(false);
     }
 
         return(
-            <div>
-                <Typography variant={"h2"}>{t("OurNewestOffers.1")}</Typography>
+            <div className="main">
+            <div className="wrapper">
+
+                <Typography style={{color: "whitesmoke"}} variant={"h2"} align={"center"}>{t("OurNewestOffers.1")}</Typography>
                 <br/>
                 <br/>
                 <Grid
@@ -156,21 +164,10 @@ const [expanded, setExpanded] = React.useState(false);
                     alignItems="center"
                 >
                 {displayCarsProperty(cars)}
-
                 </Grid>
-
-                <div className="image-right">
-                    <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/HumanRightsLogo.svg/230px-HumanRightsLogo.svg.png"
-                        alt="Human Rights Logo"/>
-                    <div>
-                        <Typography>{t("About.1")}</Typography>
-                        <Typography>
-                            <Contacts/>
-                        </Typography>
-                    </div>
-                </div>
             </div>
+            </div>
+
         )
     }
 

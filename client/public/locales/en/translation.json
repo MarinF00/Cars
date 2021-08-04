@@ -73,5 +73,11 @@
   },
   "Phone": {
     "1": "Phone"
-  }
+  },
+  "BestPlace": {
+    "1": "The best place for your next car"
+  },
+  "SpecialCarOffers": {
+  "1": "Special Car Offers"
+}
 }

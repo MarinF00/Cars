@@ -1,11 +1,9 @@
 import React from "react";
 import axios from "axios";
-import Table from "@material-ui/core/table"
-import Paper from '@material-ui/core/Paper';
 import "./Cars.css"
-import {TableBody, TableCell, TableContainer, TableRow, withStyles} from "@material-ui/core";
+import { TableCell, TableRow, withStyles} from "@material-ui/core";
 import TableContent from "../components/TableContent";
-import Link from "@material-ui/core/Link";
+
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -22,19 +20,16 @@ const StyledTableCellPhoto = withStyles((theme) => ({
         color: theme.palette.common.black,
     },
     body: {
-        width: "100px",
-        height: "100px",
+
     },
 }))(TableCell);
 
 
-const StyledTableRow = withStyles((theme) => ({
-    root: {
-        '&:nth-of-type(odd)': {
-            backgroundColor: theme.palette.action.hover,
-        },
-    },
-}))(TableRow);
+
+
+
+
+
 
 class Cars extends React.Component {
 
@@ -45,6 +40,7 @@ class Cars extends React.Component {
         columnToSort:"",
         sortDirection:"desc"
     }
+
 
 
      componentDidMount = () => {
@@ -65,31 +61,10 @@ class Cars extends React.Component {
             })
     }
 
-
-
-     displayCarsProperty = (cars) => {
-
-        return  cars.map((car) => (
-            <StyledTableRow key={car.id}>
-
-                <StyledTableCell component="th" scope="row">
-
-
-                </StyledTableCell>
-                <StyledTableCell align="right">{car.model}</StyledTableCell>
-                <StyledTableCell
-                    align="right">{car.year}</StyledTableCell>
-                <StyledTableCell align="right">{car.color}</StyledTableCell>
-                <StyledTableCell align="right">{car.user_id}</StyledTableCell>
-                <TableCell size="small" align="right">{car.photo} </TableCell>
-            </StyledTableRow>
-        ))
-    }
-
     render() {
         return(
-            <div>
-                <h1>Special Car Offers</h1>
+            <div >
+
                     <TableContent/>
             </div>
 

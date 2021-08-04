@@ -10,12 +10,18 @@ import "../pages/Navbar.css"
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        flexShrink: 0,
+        bottom: 0,
     },
     menuButton: {
         marginRight: theme.spacing(2),
     },
     title: {
         flexGrow: 1,
+    },
+    header: {
+        backgroundColor: "#000000",
+        backgroundImage: `linear-gradient(315deg, #000000 0%, #414141 74%)`,
     },
 }));
 
@@ -50,7 +56,7 @@ function  Navbar() {
     };
     return(
         <div className="Navbar">
-            <AppBar position="static">
+            <AppBar position="static" style={{height: "200px"}}  className={classes.header}>
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleClick}>
                         <MenuIcon />
@@ -68,7 +74,6 @@ function  Navbar() {
                         <MenuItem component={Link} to="/" onClick={handleClose}>{t("Home.1")}</MenuItem>
                         <MenuItem component={Link} to="/cars" onClick={handleClose}>{t("Offers.1")}</MenuItem>
                         <MenuItem component={Link} to="/cars/add" onClick={handleClose}>{t("AddCar.1")}</MenuItem>
-                        <MenuItem component={Link} to="/contacts" onClick={handleClose}>{t("Contacts.1")}</MenuItem>
                         <MenuItem component={Link} to="/login" onClick={handleClose}>{t("Login.1")}</MenuItem>
                         <MenuItem component={Link} to="/signup" onClick={handleClose}>{t("SignUp.1")}</MenuItem>
                     </Menu>
@@ -81,6 +86,7 @@ function  Navbar() {
                     <Button  style={{ minWidth: "0px" }} onClick={()=>handleLangClick('bg')}><img width="26px" height="16px" src={bg} alt="Bulgarian"/> </Button>
 
                 </Toolbar>
+                <Typography style={{fontStyle:"bold", textAlign: "center"}} variant={"h3"}>{t("BestPlace.1")}</Typography>
             </AppBar>
 
         </div>

@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from "react";
 import TableHeader from "./TableHeader";
 import {TableBody, TableCell, TableContainer, TablePagination, TableRow, withStyles} from "@material-ui/core";
-
+import "./TableContent.css"
 import axios from "axios";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/table";
 import Link from "@material-ui/core/Link";
+import Typography from "@material-ui/core/Typography";
+import {useTranslation} from "react-i18next";
 
 
 export default function TableContent()
@@ -39,7 +41,7 @@ export default function TableContent()
     }))(TableCell);
 
 
-
+    const { t } = useTranslation();
     const [cars, setCars] = useState([]);
     const [orderDirection, setOrderDirection] = useState("asc");
     const [valueToOrderBy, setvalueToOrderBy] = useState("name");
@@ -108,6 +110,7 @@ const handleChangeRowsPerPage = (event) =>
 }
     return(
         <>
+            <Typography className="main" variant={"h3"} align={"center"} style={{color:"whitesmoke"}}>{t("SpecialCarOffers.1")}</Typography>
             <TableContainer component={Paper}>
                 <Table aria-label="customized table">
                 <TableHeader
@@ -124,7 +127,7 @@ const handleChangeRowsPerPage = (event) =>
                 <StyledTableRow key={index}>
                     <StyledTableCell component="a" href={`http://localhost:3000/cars/${car.id}`} >
                         <Link to="/cars/:id">
-                            <li>{car.name}</li>
+                            <li className="links">{car.name}</li>
                         </Link>
                     </StyledTableCell>
                     <StyledTableCell align="right">{car.model}</StyledTableCell>

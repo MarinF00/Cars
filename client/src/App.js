@@ -57,7 +57,6 @@ function App () {
                             <Route path="/cars" exact component={Cars}/>
                             <Route path="/cars/add"  component={AddCar}/>
                             <Route path="/cars/:id"  component={CarDetails}/>
-                            <Route path="/contacts" exact component={Contacts}/>
                             <Route path="/signup"  component={SignUp}/>
                             <Route path="/login"  component={Login}/>
                         </Switch>
@@ -74,12 +73,14 @@ function App () {
                         <Switch>
                             <Route path="/" exact component={Home}/>
                             <Route path="/cars" exact component={Cars}/>
-                            <Route path="/contacts" exact component={Contacts}/>
-                            <Route path="/login"  component={Login}/>
+                            <Route path="/cars/add"  component={AddCar}/>
                             <Route path="/cars/:id"  component={CarDetails}/>
+                            <Route path="/signup"  component={SignUp}/>
+                            <Route path="/login"  component={Login}/>
                         </Switch>
+                        <StickyFooter/>
                     </Router>
-                    <StickyFooter/>
+
                 </div>
             )
         }
@@ -89,17 +90,23 @@ function App () {
         return(
             <div className="App">
                 <Router>
+
                     <Navbar/>
+
 
                     <Switch>
                         <Route path="/" exact component={Home}/>
                         <Route path="/cars" exact component={Cars}/>
-                        <Route path="/contacts" exact component={Contacts}/>
-                        <Route path="/login"  component={Login}/>
+                        <Route path="/cars/add"  component={AddCar}/>
                         <Route path="/cars/:id"  component={CarDetails}/>
+                        <Route path="/signup"  component={SignUp}/>
+                        <Route path="/login"  component={Login}/>
                     </Switch>
+
+                    <StickyFooter/>
+
                 </Router>
-                <StickyFooter/>
+
             </div>
         )
     }

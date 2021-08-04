@@ -1,3 +1,17 @@
 .icons:focus {
     color:#D2042D;
 }
+.icons:hover {
+    color: #ffffff;
+}
+.icons {
+    color:green;
+}
+
+.footer {
+    position:relative;
+
+    width:100%;
+    margin-top: auto;
+
+}

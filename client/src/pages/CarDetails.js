@@ -1,24 +1,25 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {useLocation} from "react-router-dom";
 import axios from "axios";
+import Typography from "@material-ui/core/Typography";
+import {Grid} from "@material-ui/core";
 
-class CarDetails extends React.Component {
-    state = {
-        title: "",
-        body: "",
-        cars: []
-    }
-    componentDidMount() {
-        this.getCars();
-    }
+function CarDetails() {
+    const [cars, setCars] = useState([]);
+    const location = useLocation();
+    let re = /\d+/g;
+   const myLocation = location.pathname.match(re);
 
+    useEffect(() => {
+        getCars();
+    }, []);
 
-    getCars = () =>
+    const getCars = () =>
     {
-        axios.get("http://localhost:8080/cars/:id")
+        axios.get("http://localhost:8080/cars")
             .then((response) => {
                 const data = response.data;
-                this.setState({cars: data})
-                console.log("Data has been received")
+                setCars(data);console.log("Data has been received")
             })
             .catch(() => {
                 alert("Error retrieving data");
@@ -27,24 +28,39 @@ class CarDetails extends React.Component {
 
 
 
-    displayCars = (cars) => {
-        return cars.map((car, index) => (
-            <div key={index}>
-                <h1>{car.model}</h1>
-                <h2>{car.year}</h2>
+    function displayCarsProperty(cars) {
+
+        return  cars.filter(car => car.id == myLocation).map((car) => (
+            <div style={{background: `url(${car.photo}) center fixed no-repeat`, backgroundSize: "cover", height:"100vh",
+
+                  }}>
+
+                <Grid
+                    spacing={1}
+                    container
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                >
+
+                        <Typography style={{color: "whitesmoke"}} variant={"h1"} align={"left"}>{car.name} </Typography>
+
+
+                        <Typography style={{color: "whitesmoke"}} variant={"h1"} align={"center"}>{car.model} </Typography>
+
+                        <Typography style={{color: "whitesmoke"}} variant={"h1"} align={"right"}>{car.year} </Typography>
+
+
+                </Grid>
+
             </div>
         ))
     }
 
-    render() {
-        return(
-            <div>
-                <h1>This Car Details</h1>
-                <div className="cars">
-                    <h2>{this.displayCars(this.state.cars)}</h2>
-                </div>
-            </div>
-        )
-    }
+    return(
+        <div>
+        {displayCarsProperty(cars)}
+        </div>
+    )
 }
 export default CarDetails;

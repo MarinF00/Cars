@@ -78,7 +78,8 @@ export default function Login() {
                         error={formik.touched.password && Boolean(formik.errors.password)}
                         helperText={formik.touched.password && formik.errors.password}
                     />
-                    <Button color="primary" variant="contained"  type="submit">
+                    <Button style={{color: "whitesmoke", backgroundColor: "#000000",
+                        backgroundImage: `linear-gradient(315deg, #000000 0%, #414141 74%)`}} variant="outlined"  type="submit">
                         {t("Login.1")}
                     </Button>
                 </form>
