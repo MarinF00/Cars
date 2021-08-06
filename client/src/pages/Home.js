@@ -12,7 +12,7 @@ import {
     CardMedia,
     Collapse, Grid,
     IconButton,
-    makeStyles, Paper, Tab, Tabs
+    makeStyles, Paper, Tab, Tabs, Tooltip
 } from "@material-ui/core";
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -87,7 +87,7 @@ const [expanded, setExpanded] = React.useState(false);
 
 
         return  cars.filter(car => car.id >= cars.length - 4).map((car) => (
-            <div className="cars">
+            <Grid direction={"column"} className="cars">
                 <Grid item  xs={8} sm={2} md={12} key={cars.indexOf(car)}>
             <Card className={classes.root}>
                 <CardHeader
@@ -103,7 +103,7 @@ const [expanded, setExpanded] = React.useState(false);
                     }
                     title={
                         <Link to={`/cars/${car.id}`}>
-                        <li style={{textDecoration: "none"}}>{car.name}</li>
+                            <Tooltip placement="top-start" arrow title="Car page"><li style={{textDecoration: "none"}}>{car.name}</li></Tooltip>
                         </Link>
                     }
 
@@ -145,19 +145,18 @@ const [expanded, setExpanded] = React.useState(false);
                 </Collapse>
             </Card>
                 </Grid>
-            </div>
+            </Grid>
         ))
     }
 
         return(
             <div className="main">
-            <div className="wrapper">
 
                 <Typography style={{color: "whitesmoke"}} variant={"h2"} align={"center"}>{t("OurNewestOffers.1")}</Typography>
                 <br/>
                 <br/>
                 <Grid
-                    spacing={1}
+                    spacing={2}
                     container
                     direction="row"
                     justifyContent="space-between"
@@ -165,7 +164,6 @@ const [expanded, setExpanded] = React.useState(false);
                 >
                 {displayCarsProperty(cars)}
                 </Grid>
-            </div>
             </div>
 
         )
