@@ -5,8 +5,11 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import * as Yup from "yup";
 import {useFormik} from "formik";
+import {Formik,Form, Field} from "formik";
 import {TextareaAutosize} from "@material-ui/core";
 import {useTranslation} from "react-i18next";
+import "./FormCss.css"
+import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -16,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         padding: theme.spacing(10),
 
-        '& .MuiTextField-root': {
+        '& .Field-root': {
             margin: theme.spacing(1),
             width: '300px',
         },
@@ -54,108 +57,110 @@ export default function AddCar() {
             .required('Owner ID is required'),
     });
 
-    const formik = useFormik({
-        initialValues: {
-            name: '',
-            model: '',
-            year: "",
-            color: '',
-            description: "",
-            photo: "",
-            user_id: "",
-        },
-        validationSchema: validationSchema,
-        onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
-        },
-    });
+
 
     return (
         <div>
+            <Formik
+                initialValues={{
+                    name: '',
+                    model: '',
+                    year: "",
+                    color: '',
+                    description: "",
+                    photo: "",
+                    user_id: "",
+                }}
+                validationSchema={validationSchema}
+            >
+                {({ errors, touched }) => (
+                    <div className="custom-field">
             <form action="http://localhost:8080/cars" method="POST" className={classes.root}>
                 <Typography variant={"h3"}>{t("AddCar.1")}</Typography>
-                <TextField
+                <Field
                     fullWidth
                     id="id"
                     name="id"
                     type="hidden"
                 />
-                <TextField
+                <Field
                     fullWidth
                     id="name"
                     name="name"
-                    label={t("Car.1")}
-                    value={formik.values.name}
-                    onChange={formik.handleChange}
-                    error={formik.touched.name && Boolean(formik.errors.name)}
-                    helperText={formik.touched.name && formik.errors.name}
+                    placeholder={t("Car.1")}
+                    className="custom-field"
                 />
-
-                <TextField
+                {errors.name && touched.name ? (
+                    <div>{errors.name}</div>
+                ) : null}
+                <Field
                     fullWidth
                     id="model"
                     name="model"
-                    label={t("Model.1")}
-                    value={formik.values.model}
-                    onChange={formik.handleChange}
-                    error={formik.touched.model && Boolean(formik.errors.model)}
-                    helperText={formik.touched.model && formik.errors.model}
+                    placeholder={t("Model.1")}
+                    className="custom-field"
                 />
-                <TextField
+                {errors.model && touched.model ? (
+                    <div>{errors.model}</div>
+                ) : null}
+                <Field
                     fullWidth
                     id="year"
                     name="year"
-                    label={t("Year.1")}
-                    value={formik.values.year}
-                    onChange={formik.handleChange}
-                    error={formik.touched.year && Boolean(formik.errors.year)}
-                    helperText={formik.touched.year && formik.errors.year}
+                    placeholder={t("Year.1")}
+                    className="custom-field"
                 />
-                <TextField
+                {errors.year && touched.year ? (
+                    <div>{errors.year}</div>
+                ) : null}
+                <Field
                     fullWidth
                     id="color"
                     name="color"
-                    label={t("Color.1")}
-                    value={formik.values.color}
-                    onChange={formik.handleChange}
-                    error={formik.touched.color && Boolean(formik.errors.color)}
-                    helperText={formik.touched.color && formik.errors.color}
+                    placeholder={t("Color.1")}
+                    className="custom-field"
                 />
-
-                <TextField
+                {errors.color && touched.color ? (
+                    <div>{errors.color}</div>
+                ) : null}
+                <Field
                     fullWidth
                     id="photo"
                     name="photo"
-                    label={t("Photo.1")}
-                    value={formik.values.photo}
-                    onChange={formik.handleChange}
-                    error={formik.touched.photo && Boolean(formik.errors.photo)}
-                    helperText={formik.touched.photo && formik.errors.photo}
+                    placeholder={t("Photo.1")}
+                    className="custom-field"
                 />
-                <TextField
+                {errors.photo && touched.photo ? (
+                    <div>{errors.photo}</div>
+                ) : null}
+                <Field
                     fullWidth
                     id="user_id"
                     name="user_id"
-                    label={t("Owner.1")}
-                    value={formik.values.user_id}
-                    onChange={formik.handleChange}
-                    error={formik.touched.user_id && Boolean(formik.errors.user_id)}
-                    helperText={formik.touched.user_id && formik.errors.user_id}
+                    placeholder={t("Owner.1")}
+                    className="custom-field"
                 />
-                <TextareaAutosize aria-label="minimum height" minRows={3}
-                                  style={{width: "300px", height: "130px"}}
+                {errors.user_id && touched.user_id ? (
+                    <div>{errors.user_id}</div>
+                ) : null}
+                <Field aria-label="minimum height" minRows={3}
+
                                   id="description"
                                   name="description"
-                                  label={t("Description.1")}
-                                  value={formik.values.description}
-                                  onChange={formik.handleChange}
-                                  error={formik.touched.description && Boolean(formik.errors.description)}
-                                  helperText={formik.touched.description && formik.errors.description}
+                                  placeholder={t("Description.1")}
+                                  className="custom-field"
                 />
+                {errors.description && touched.description ? (
+                    <div>{errors.description}</div>
+                ) : null}
+
                 <Button color="primary" variant="contained" type="submit">
                     {t("AddCar.1")}
                 </Button>
             </form>
+                    </div>
+                    )}
+                    </Formik>
         </div>
     );
 }

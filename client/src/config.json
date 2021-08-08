@@ -1,0 +1,55 @@
+{
+  "center": [ 27.9147, 43.2141],
+  "geojsonObject": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "kind": "county",
+          "name": "Chaika",
+          "state": "Varna"
+        },
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [28.0257, 43.2532]
+
+              ]
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  "geojsonObject2": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "kind": "county",
+          "name": "Artisans",
+          "state": "Varna"
+        },
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [27.8858, 43.2172]
+              ]
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  "VarnaCityLonLat": [27.9147, 43.2141],
+  "blueSpringsLonLat": [29.0257, 44.2532],
+  "markerImage24" : "https://cdn2.iconfinder.com/data/icons/social-media-and-payment/64/-47-24.png",
+  "markerImage32" : "https://cdn2.iconfinder.com/data/icons/social-media-and-payment/64/-47-32.png",
+  "markerImage64" : "https://cdn2.iconfinder.com/data/icons/social-media-and-payment/64/-47-64.png"
+}

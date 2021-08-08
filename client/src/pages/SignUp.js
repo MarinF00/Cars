@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
 import * as Yup from "yup";
-import {Formik,Form} from "formik";
+import {Formik,Form, Field} from "formik";
 import Typography from "@material-ui/core/Typography";
 import {useTranslation} from "react-i18next";
 
@@ -60,52 +60,62 @@ const SignUp = () => {
                         password: '',
                     }}
                     validationSchema={validate}
-                    onSubmit={values => {
-                        console.log(values)
-                    }}
+
                 >
-                    {formik => (
-                        <div>
+                    {({ errors, touched }) => (
+                        <div className="custom-field">
                             <Form action="http://localhost:8080/users" method="POST"  className={classes.root}>
                                 <Typography variant={"h2"} color={"primary"}>{t("Registration.1")}</Typography>
-                                <TextField
+                                <Field
                                     fullWidth
                                     id="id"
                                     name="id"
                                     type="hidden"
                                 />
-                                <TextField
+
+                                <Field
                                     fullWidth
                                     id="first_name"
                                     name="first_name"
                                     label={t("FirstName.1")}
 
                                 />
-                                <TextField
+                                {errors.first_name && touched.first_name ? (
+                                    <div>{errors.first_name}</div>
+                                ) : null}
+                                <Field
                                     fullWidth
                                     id="last_name"
                                     name="last_name"
                                     label={t("LastName.1")}
 
                                 />
-                                <TextField
+                                {errors.last_name && touched.last_name ? (
+                                    <div>{errors.last_name}</div>
+                                ) : null}
+                                <Field
                                     fullWidth
                                     id="email"
                                     name="email"
                                     label={t("Email.1")}
 
                                 />
-                                <TextField
+                                {errors.email && touched.email ? (
+                                    <div>{errors.email}</div>
+                                ) : null}
+                                <Field
                                     fullWidth
                                     id="password"
                                     name="password"
                                     label={t("Password.1")}
                                     type="password"
-
                                 />
-                                <Button color="primary" variant="contained"  type="submit">
+                                {errors.password && touched.password ? (
+                                    <div>{errors.password}</div>
+                                ) : null}
+                                <button color="primary" variant="contained"  type="submit">
                                     {t("SignUp.1")}
-                                </Button>
+                                </button>
                             </Form>
                         </div>
                     )}
