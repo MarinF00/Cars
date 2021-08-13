@@ -70,7 +70,7 @@ app.delete("/cars/:id", (req,res)=> {
     mySqlConnection.query("DELETE FROM cars WHERE id = ?", [req.params.id], (err,rows, fields) => {
         if(!err)
         {
-            res.send("Car with id: " + [req.params.id] + "Deleted Successfully");
+            res.redirect("http://localhost:3000/cars");
         }
         else
             console.log(err);

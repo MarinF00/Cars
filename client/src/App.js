@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import CarDetails from "./pages/CarDetails";
 import Home from "./pages/Home";
+import Update from "./pages/Update";
 import AddCar from "./pages/AddCar";
 import Footer from "./components/Footer";
 import SignUp from "./pages/SignUp";
@@ -276,7 +277,8 @@ function App () {
                         <Route path="/" exact component={Home}/>
                         <Route path="/cars" exact component={Cars}/>
                         <Route path="/cars/add"  component={AddCar}/>
-                        <Route path="/cars/:id"  component={CarDetails}/>
+                        <Route path="/cars/:id" exact component={CarDetails}/>
+                        <Route path="/cars/:id/update"  component={Update}/>
                         <Route path="/signup"  component={SignUp}/>
                         <Route path="/login"  component={Login}/>
                     </Switch>

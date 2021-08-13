@@ -3,6 +3,8 @@ import {useLocation} from "react-router-dom";
 import axios from "axios";
 import Typography from "@material-ui/core/Typography";
 import {Grid} from "@material-ui/core";
+import Link from "@material-ui/core/Link";
+import Button from "@material-ui/core/Button";
 
 function CarDetails() {
     const [cars, setCars] = useState([]);
@@ -25,6 +27,14 @@ function CarDetails() {
                 alert("Error retrieving data");
             })
     }
+
+    const deleteCar = (id) => {
+        axios.delete(`http://localhost:8080/cars/${id}`).then( window.location = "/")
+
+
+
+    }
+
 
 
 
@@ -52,7 +62,8 @@ function CarDetails() {
 
 
                 </Grid>
-
+                <Button style={{}} type="submit"><a href={`/cars/${car.id}/update`}>Update</a> </Button>
+                <Button onClick={() => deleteCar(car.id)}>Delete</Button>
             </div>
         ))
     }
